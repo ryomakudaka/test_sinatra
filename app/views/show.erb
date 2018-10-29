@@ -1,0 +1,72 @@
+
+<main>
+<div class="container-fluid">
+  <div class="row fh5co-post-entry single-entry">
+    <article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
+      <figure >
+        <img src="<%= @post['image_path'] %>" alt="Image" class="img-responsive">
+
+
+      <h2 class="fh5co-article-title"><%= @post['title'] %></h2>
+      <p><%= @post['description'] %></p>
+      <span class="fh5co-meta fh5co-date "><%= @post['updated_at'] %></span>
+        <div class="comment">
+          <h3>コメント</h3>
+          <ul>
+            <% @comments.each do |comment| %>
+              <li>
+                <span > @ <%= comment['user_name'] %></span><br>
+                <%= comment['body'] %>
+
+              </li>
+            <% end %>
+
+          </ul>
+          <br>
+          <form action="/show/<%= @post['id'] %>/comment" method="post">
+            <textarea name="comment" placeholder="Comment"></textarea>
+            <br>
+            　<button  type="submit">コメントを追加</button>
+          </form>
+        </div>
+      </figure>
+    </article>
+  </div>
+</div>
+
+</main>
+
+<style>
+  .img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .fh5co-post-entry article {
+    text-align: center;
+    float: left;
+    margin-bottom: 5px;
+    padding-left: 3em;
+    padding-right: 3em;
+  }
+
+  .fh5co-post-entry article h2 {
+    font-family: "Playfair Display", times, serif;
+    font-size: 34px;
+    color: #000;
+    margin-bottom: 0;
+  }
+.comment{
+  text-align: center;
+}
+
+    p{
+      margin-bottom: 5px;
+    }
+
+    li{
+      list-style: none;
+    }
+</style>

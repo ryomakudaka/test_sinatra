@@ -1,0 +1,54 @@
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<main class="main-wrapper" id="container">
+
+  <!-- image Gallery -->
+      <div class="container-fluid">
+        <div class="row fh5co-post-entry">
+          <% @posts.each do |post| %>
+          <article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
+
+              <figure>
+
+                <a href="/show/<%= post['id'] %>"><img src="<%= post['image_path'] %>" alt="Image" class="img-responsive"></a>
+              </figure>
+              <h2 class="fh5co-article-title"><a href="/show/"><%= Rack::Utils.escape_html(post['title']) %></a></h2>
+              <p><%= Rack::Utils.escape_html(post['description']) %></p>
+
+              <form action="/destroy/<%= post['id'] %>" method="post" style="display: inline; float: left">
+                <input type="hidden" name="_method" value="delete">
+                <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-trash"
+                                                                        onClick="return confirm('削除します。\nよろしいですか？');"></i></button>
+              </form>
+              </article>
+            <% end %>
+
+              </div>
+              </div>
+
+
+
+</main>
+
+<style>
+  .fh5co-post-entry article {
+    text-align: center;
+    float: left;
+    margin-bottom: 30px;
+    padding-left: 3em;
+    padding-right: 3em;
+  }
+
+
+  .fh5co-post-entry article h2 {
+    font-family: "Playfair Display", times, serif;
+    font-size: 34px;
+    color: #000;
+    margin-bottom: 5px;
+  }
+
+   p{
+     margin-bottom: 5px;
+   }
+</style>
+
